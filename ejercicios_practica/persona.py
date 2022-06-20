@@ -52,6 +52,14 @@ def report(limit=0, offset=0):
         json_result_list.append(json_result)
 
     return json_result_list
+def dashboard():
+    x= []
+    y = []
+    query = db.session.query(Persona)
+    for datos in query:
+        x.append(datos.id)
+        y.append(datos.age)
+    return x, y
 
 
 if __name__ == "__main__":
@@ -69,9 +77,11 @@ if __name__ == "__main__":
     app.app_context().push()
 
     db.create_all()
-
+   
     # Aquí se puede ensayar todo lo que necesitemos con nuestra DB
     # ...
-
+    #insert("leandro", 40)
+    #insert("romina", 35)
+    #dashboard()
     db.session.remove()
     db.drop_all()
